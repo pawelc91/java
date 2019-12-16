@@ -1,7 +1,6 @@
 package fileIO;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.util.Scanner;
 
 public class FileService {
@@ -34,12 +33,33 @@ public class FileService {
             System.out.println("=================================");
 
         }
+        s.close();
+    }
+
+    public void insertDataIntoFile(String path, String data) throws FileNotFoundException {
+        // nie wymaga aby plik istniał
+        PrintWriter pw = new PrintWriter(new File(path));
+        pw.println("NAGŁÓWEK");
+        pw.println(data);
+        pw.close();
+    }
+
+    public void appendDataIntoFile (String path, String data) throws IOException {
+        FileWriter fw = new FileWriter(new File(path), true);
+        fw.append(data+"\n");
+        fw.close();
     }
 
 
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws IOException {
         FileService fs = new FileService();
-        fs.readFile("/Users/catalina/Desktop/projects/java/src/main/java/fileIO/text.txt");
-        fs.readCsvFile("/Users/catalina/Desktop/projects/java/src/main/java/fileIO/data.csv");
+//        fs.readFile("/Users/catalina/Desktop/projects/java/src/main/java/fileIO/text.txt");
+//        fs.readCsvFile("/Users/catalina/Desktop/projects/java/src/main/java/fileIO/data.csv");
+//        fs.insertDataIntoFile("/Users/catalina/Desktop/projects/java/src/main/java/fileIO/fromFileReader.txt",
+//                "ALA MA PSA");
+        fs.appendDataIntoFile("/Users/catalina/Desktop/projects/java/src/main/java/fileIO/append.txt", "dodajemy dane");
+
+
+
     }
 }
