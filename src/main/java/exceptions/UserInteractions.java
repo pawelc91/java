@@ -39,6 +39,10 @@ public class UserInteractions {
                 break;
             } catch (DateTimeParseException e) {
                 System.out.println("Podałeś błędną datę");
+                System.out.println("ParsedStringEx: " + e.getParsedString());
+                e.printStackTrace();
+                System.out.println(e.getMessage());
+
             } catch (InputMismatchException e) {
                 System.out.println("Podałeś błędną liczbę");
             } finally {
